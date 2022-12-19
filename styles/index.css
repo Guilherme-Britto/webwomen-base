@@ -11,7 +11,7 @@ body{
 
 header{
     height: 789px;
-    padding: 100px 16px 120px 16px;
+    padding: 60px 16px 120px 16px;
     color: var(--color-grey-3);
     background-color: #000000a9;
 }
