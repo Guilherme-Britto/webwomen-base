@@ -1,0 +1,172 @@
+/* Desenvolva sua estilização aqui... */
+
+body{
+    background-image: url('../assets/img/Pexels\ Photo\ by\ Christina\ Morillo\ \(1\).svg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: auto;
+    background-position: center top;
+
+}
+
+header{
+    height: 789px;
+    padding: 100px 16px 120px 16px;
+    color: var(--color-grey-3);
+    background-color: #000000a9;
+}
+
+header h1{
+    color: var(--color-grey-6);
+    font-size: var(--title-1);
+    margin-bottom: 70px;
+}
+
+header h2{
+    color: var(--color-grey-6);
+    font-size: var(--title-2);
+    font-weight: 600;
+    line-height: 3.5rem;
+    margin-bottom: 50px;
+}
+
+header p{
+    font-size: var(--title-5);
+    line-height: 2rem;
+}
+
+header button{
+    width: 296px;
+    height: 48px;
+    color: var(--color-grey-6);
+    background-color: var(--color-brand-1);
+    border: none;
+    border-radius: var(--radius-default);
+    margin-top: 50px;
+}
+
+main{
+    background-color: var(--color-grey-5);
+    padding: 0 16px 30px 16px;
+}
+
+main h2{
+    padding: 30px 0;
+    font-size: var(--title-4);
+    font-weight: 600;
+    color: var(--color-grey-1);
+}
+
+.mainCard__container{
+    padding: 38px;
+    margin-bottom: 32px;
+}
+
+.mainCard__container > h2{
+    padding: 0;
+}
+
+.span__container{
+    padding: 30px 0;
+}
+
+.span__container > span{
+    font-size: var(--text-3);
+    color: var(--color-grey-1);
+    margin-right: 5px;
+}
+
+.mainCard__container > p{
+    color: var(--color-grey-2);
+    line-height: 2rem;
+}
+
+.modality{
+    background-color: var(--color-grey-3);
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+
+.mainCard__container > button{
+    width: 100%;
+    height: 38px;
+    border: none;
+    border-radius: 8px;
+    color: var(--color-grey-6);
+    background-color: var(--color-brand-1);
+}
+
+.selectedCard__div{
+    position: relative;
+}
+
+.selectedCard__div > h3{
+    font-size: var(--title-5);
+    font-weight: 600;
+    width: 80%;
+}
+
+.selectedCard__div > button{
+    position: absolute;
+    right: 5px;
+    top: 0;
+
+    border: none;
+    border-radius: 8px;
+    background-color: var(--color-grey-5);
+    width: 44px;
+    height: 38px;
+}
+
+
+.selectedCard__container p{
+    font-size: var(--text-3);
+    line-height: 2rem;
+
+}
+
+@media(min-width: 1600px){
+
+    body{
+        background-image: url('../assets/img/Pexels\ Photo\ by\ Christina\ Morillo.svg');
+    }
+
+    header{
+        height: 735px;
+        padding: 100px 607px 120px 100px;
+    }
+    
+    main{
+        padding: 0 16px 30px 100px;
+    }
+
+    main h2{
+        padding: 50px 0;
+    }
+
+    .mainCard__container{
+        width: 818px;
+        height: 290px;
+        position: relative;
+    }   
+
+    .span__container > span{
+        margin-right: 32px;
+    }
+
+    .mainCard__container > button{
+        width: unset;
+        padding: 7px 28px;
+        height: 38px;
+        position: absolute;
+        bottom: 38px;
+        right: 38px;
+    }
+
+    .selectedCard__container{
+        position: absolute;
+        right: 100px;
+        top: 867px;
+        width: 503px;
+    }
+}
