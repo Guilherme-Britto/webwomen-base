@@ -4,9 +4,8 @@ body{
     background-image: url('../assets/img/Pexels\ Photo\ by\ Christina\ Morillo\ \(1\).svg');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: auto;
+    background-size: contain;
     background-position: center top;
-
 }
 
 header{
@@ -125,7 +124,7 @@ main h2{
 
 }
 
-@media(min-width: 1200px){
+@media(min-width: 769px){
 
     body{
         background-image: url('../assets/img/Pexels\ Photo\ by\ Christina\ Morillo.svg');
@@ -145,7 +144,7 @@ main h2{
     }
 
     .mainCard__container{
-        width: 818px;
+        width: 50%;
         height: 290px;
         position: relative;
     }   

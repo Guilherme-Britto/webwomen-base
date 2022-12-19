@@ -8,6 +8,7 @@ function renderCards(array) {
 
         list.appendChild(card)
     })
+    addSelected()
 }
 
 function createCard(element) {
@@ -61,33 +62,72 @@ function addSelected() {
     buttons.forEach(button => {
         button.addEventListener('click', (event) => {
             const jobFound = jobsData.find(job => {
-                return job.id === button.dataset.id
+                return job.id === Number(button.dataset.id)
             })
-            console.log (jobFound)
-            const jobToCart = {
-                ...jobFound
+
+            const jobPresent = selected.find(job => {
+                return job.id === jobFound.id
+            })
+
+            if (!jobPresent) {
+                const jobToArray = {
+                    ...jobFound
+                }
+
+                selected.push(jobToArray)
+                renderSelected(selected)
             }
-
-            selected.push(jobToCart)
-            console.log(selected)
-            renderSelected(selected)
         })
     })
 }
 
+function renderSelected(array) {
+    const listSelected = document.querySelector('.listSelected')
 
+    listSelected.innerHTML = ''
 
-function debug(){
-    const buttons = document.querySelectorAll('.add')
-
-    buttons.forEach(button =>{
-        button.addEventListener('click', (event) => {
-            console.log(event)
-        })
+    array.forEach(element => {
+        console.log(element)
+        const card = createSelectedCard(element)
+        console.log(card)
+        console.log(listSelected)
+        listSelected.appendChild(card)
     })
 }
 
-addSelected()
+// selected.forEach(element => {
+//     listSelected.innerHTML = ''
+//     renderSelected(element)
+//     listSelected.appendChild(renderSelected(element))
+// })
+
+function createSelectedCard(element) {
+    const li = document.createElement('li')
+    const selectedCard__div = document.createElement('div')
+    const h3 = document.createElement('h3')
+    const span__container = document.createElement('div')
+    const span1 = document.createElement('span')
+    const span2 = document.createElement('span')
+    const button = document.createElement('button')
+
+    selectedCard__div.classList.add('selectedCard__div')
+    h3.innerText = element.title
+    span__container.classList.add('span__container')
+    span1.innerText = element.enterprise
+    span2.innerText = element.location
+    button.dataset.id = element.id
+    button.classList.add('remove')
+    const image = document.createElement('img')
+    image.src  = './assets/img/trash.svg'
+    button.appendChild(image)
+
+    span__container.append(span1, span2)
+
+    selectedCard__div.append(h3, span__container, button)
+    li.append(selectedCard__div)
+
+    return li
+}
 
 
 renderCards(jobsData)
