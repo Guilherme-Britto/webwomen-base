@@ -13,7 +13,7 @@ function renderCards(array) {
 }
 
 function renderLS() {
-    const selectedLS = JSON.parse(localStorage.getItem('@webWomen:selected'))
+    const selectedLS = JSON.parse(localStorage.getItem('@webWomen:selected')) || []
 
     selected = selectedLS
 
