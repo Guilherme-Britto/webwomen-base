@@ -8,7 +8,38 @@ function renderCards(array) {
 
         list.appendChild(card)
     })
-    addSelected()
+    addRemoveSelected()
+
+}
+
+function renderLS() {
+    const selectedLS = JSON.parse(localStorage.getItem('@webWomen:selected'))
+
+    selected = selectedLS
+
+    const buttons = [...document.querySelectorAll('.add')]
+
+    // buttons.forEach(button => {
+
+    //     const id = selected.includes(button.dataset.id)
+    //     console.log(id)
+    //         if(id){
+    //             console.log(button.id)
+    //             console.log(element.id)
+    //             button.innerText = 'Remover Candidatura'
+    //         }
+            
+    //     }
+    // )
+
+    selected.forEach(element => {
+        const button = buttons.find(button =>{
+            return element.id == Number(button.dataset.id)
+        })
+        button.innerText = 'Remover Candidatura'
+    })
+
+    renderSelected(selected)
 }
 
 function createCard(element) {
@@ -49,57 +80,100 @@ function createCard(element) {
     return li
 }
 
-function createEmpty() {
-    const p = document.createElement('p')
-    p.innerText = "Você ainda não aplicou para nenhuma vaga"
-
-    return p
-}
-
-function addSelected() {
+function addRemoveSelected() {
     const buttons = document.querySelectorAll('.add')
 
     buttons.forEach(button => {
         button.addEventListener('click', (event) => {
-            const jobFound = jobsData.find(job => {
-                return job.id === Number(button.dataset.id)
-            })
 
-            const jobPresent = selected.find(job => {
-                return job.id === jobFound.id
-            })
+            if (button.innerText == 'Candidatar') {
 
-            if (!jobPresent) {
-                const jobToArray = {
-                    ...jobFound
+                const jobFound = jobsData.find(job => {
+                    return job.id == button.dataset.id
+                })
+
+                const jobPresent = selected.find(job => {
+                    return job.id === jobFound.id
+                })
+
+                if (!jobPresent) {
+                    const jobToArray = {
+                        ...jobFound
+                    }
+
+                    selected.push(jobToArray)
+                    renderSelected(selected)
+                    removeSelected()
+                    localStorage.setItem('@webWomen:selected', JSON.stringify(selected))
+
+                    button.innerText = 'Remover Candidatura'
                 }
-
-                selected.push(jobToArray)
-                renderSelected(selected)
             }
+
+            else {
+                const filteredArray = selected.filter(job => {
+                    return job.id !== Number(button.dataset.id)
+                })
+                selected = filteredArray
+                renderSelected(selected)
+                localStorage.setItem('@webWomen:selected', JSON.stringify(selected))
+
+                button.innerText = 'Candidatar'
+            }
+
         })
     })
 }
+
+function removeSelected() {
+    const buttons = document.querySelectorAll('.remove')
+
+    buttons.forEach(button => {
+        button.addEventListener('click', (event) => {
+
+            const filteredArray = selected.filter(job => {
+                return job.id !== Number(button.dataset.id)
+            })
+
+            const changeTextAll = [...document.querySelectorAll('.add')]
+            const changeText = changeTextAll.find(element => {
+                return element.dataset.id === button.dataset.id
+            })
+
+            changeText.innerText = 'Candidatar'
+            selected = filteredArray
+            renderSelected(selected)
+            localStorage.setItem('@webWomen:selected', JSON.stringify(selected))
+        })
+    })
+}
+
 
 function renderSelected(array) {
     const listSelected = document.querySelector('.listSelected')
 
     listSelected.innerHTML = ''
 
+    if (array.length == 0) {
+        listSelected.appendChild(emptySelected())
+    }
+
     array.forEach(element => {
-        console.log(element)
         const card = createSelectedCard(element)
-        console.log(card)
-        console.log(listSelected)
         listSelected.appendChild(card)
     })
+
+    removeSelected()
+    localStorage.setItem('@webWomen:selected', JSON.stringify(selected))
 }
 
-// selected.forEach(element => {
-//     listSelected.innerHTML = ''
-//     renderSelected(element)
-//     listSelected.appendChild(renderSelected(element))
-// })
+function emptySelected() {
+    const p = document.createElement('p')
+    p.innerText = 'Você ainda não aplicou para nenhuma vaga'
+
+    return p
+}
+
 
 function createSelectedCard(element) {
     const li = document.createElement('li')
@@ -118,7 +192,7 @@ function createSelectedCard(element) {
     button.dataset.id = element.id
     button.classList.add('remove')
     const image = document.createElement('img')
-    image.src  = './assets/img/trash.svg'
+    image.src = './assets/img/trash.svg'
     button.appendChild(image)
 
     span__container.append(span1, span2)
@@ -131,3 +205,11 @@ function createSelectedCard(element) {
 
 
 renderCards(jobsData)
+renderLS()
+
+
+// selected.forEach(element => {
+//     listSelected.innerHTML = ''
+//     renderSelected(element)
+//     listSelected.appendChild(renderSelected(element))
+// })

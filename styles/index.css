@@ -4,7 +4,7 @@ body{
     background-image: url('../assets/img/Pexels\ Photo\ by\ Christina\ Morillo\ \(1\).svg');
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size: contain;
+    background-size: auto;
     background-position: center top;
 }
 
@@ -126,13 +126,17 @@ main h2{
 
 @media(min-width: 769px){
 
+    .container {
+        margin: 0 0 15px 0;
+    }
+
     body{
         background-image: url('../assets/img/Pexels\ Photo\ by\ Christina\ Morillo.svg');
     }
 
     header{
-        height: 735px;
-        padding: 100px 607px 120px 100px;
+        height: 40%;
+        padding: 100px 0 120px 100px;
     }
     
     main{
@@ -145,9 +149,8 @@ main h2{
 
     .mainCard__container{
         width: 50%;
-        height: 290px;
         position: relative;
-    }   
+    }
 
     .span__container > span{
         margin-right: 32px;
@@ -165,7 +168,13 @@ main h2{
     .selectedCard__container{
         position: absolute;
         right: 100px;
-        top: 867px;
-        width: 503px;
+        top: 750px;
+        width: 30%;
+    }
+}
+
+@media(min-width: 1600px){
+    body{
+        background-size: contain;
     }
 }

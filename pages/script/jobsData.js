@@ -28,4 +28,4 @@ const jobsData = [
   },
 ];
 
-const selected = []
+let selected = []
