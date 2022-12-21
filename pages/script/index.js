@@ -19,19 +19,6 @@ function renderLS() {
 
     const buttons = [...document.querySelectorAll('.add')]
 
-    // buttons.forEach(button => {
-
-    //     const id = selected.includes(button.dataset.id)
-    //     console.log(id)
-    //         if(id){
-    //             console.log(button.id)
-    //             console.log(element.id)
-    //             button.innerText = 'Remover Candidatura'
-    //         }
-            
-    //     }
-    // )
-
     selected.forEach(element => {
         const button = buttons.find(button =>{
             return element.id == Number(button.dataset.id)
