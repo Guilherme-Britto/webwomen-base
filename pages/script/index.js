@@ -20,7 +20,7 @@ function renderLS() {
     const buttons = [...document.querySelectorAll('.add')]
 
     selected.forEach(element => {
-        const button = buttons.find(button =>{
+        const button = buttons.find(button => {
             return element.id == Number(button.dataset.id)
         })
         button.innerText = 'Remover Candidatura'
@@ -193,10 +193,3 @@ function createSelectedCard(element) {
 
 renderCards(jobsData)
 renderLS()
-
-
-// selected.forEach(element => {
-//     listSelected.innerHTML = ''
-//     renderSelected(element)
-//     listSelected.appendChild(renderSelected(element))
-// })
